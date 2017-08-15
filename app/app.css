@@ -23,3 +23,8 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+.title-bar-bg {
+  color:#FFF;
+  background:#00aeef;
+}
