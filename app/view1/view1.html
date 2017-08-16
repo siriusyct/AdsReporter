@@ -1,31 +1,44 @@
 <header class="ui-header ui-header-positive ui-border-b">
     <h1>登录</h1>
 </header>
-<section class="ui-container">
+<section class="ui-container" ng-app="adRep" ng-controller="LoginController">
     <div class="ui-form ui-border-t">
-        <form action="#">
+        <form>
             <div class="ui-form-item ui-border-b">
                 <label>
                     用户名
                 </label>
-                <input type="text" placeholder="用户名">
-                <a href="#" class="ui-icon-close">
+                <input type="text" placeholder="用户名" ng-model="user.name">
+                <a class="ui-icon-close" ng-click="resetUserName()">
                 </a>
             </div>
             <div class="ui-form-item ui-border-b">
                 <label>
                     密码
                 </label>
-                <input type="text" placeholder="密码">
-                <a href="#" class="ui-icon-close">
+                <input type="password" placeholder="密码" ng-model="user.pw">
+                <a class="ui-icon-close" ng-click="resetUserPW()">
                 </a>
             </div>
             <div class="ui-btn-wrap">
-                <button class="ui-btn-lg ui-btn-danger">
+                <button class="ui-btn-lg ui-btn-danger" ng-click="doLogin()">
                     确定
                 </button>
             </div>
         </form>
+    </div>
+    <div class="ui-dialog" >
+        <div class="ui-dialog-cnt">
+            <header class="ui-dialog-hd ui-border-b">
+                <h3>登录失败</h3>
+            </header>
+            <div class="ui-dialog-bd">
+                <div> {{ lgUserMessage }} </div>
+            </div>
+            <div class="ui-dialog-ft">
+                <button type="button" data-role="button" ng-click="dialogClose()">确定</button>
+            </div>
+        </div>
     </div>
 </section>
 
