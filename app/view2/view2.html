@@ -1,36 +1,9 @@
 <header class="ui-header ui-header-positive ui-border-b">
-  <h1> </h1>
+    <h1>列表</h1><button class="ui-btn" ng-click="userLogout()">退出</button>
 </header>
 <section class="ui-container" ng-app="adRep" ng-controller="AdsListController">
   <div class="ui-form ui-border-t">
-    <form action="#">
-      <div class="ui-form-item ui-border-b">
-        <label>日期</label>
-        <div class="ui-select-group">
-          <div class="ui-select">
-            <select>
-              <option>2014</option>
-              <option selected>2015</option>
-              <option>2016</option>
-            </select>
-          </div>
-          <div class="ui-select">
-            <select>
-              <option>03</option>
-              <option selected>04</option>
-              <option>05</option>
-            </select>
-          </div>
-          <div class="ui-select">
-            <select>
-              <option>21</option>
-              <option selected>22</option>
-              <option>23</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </form>
+
   </div>
     <ul class="ui-list ui-list-link ui-border-tb ui-list-active">
         <li class="ui-border-t" ng-repeat="item in adsRecords" ng-click="adsListClick($index)">
@@ -38,7 +11,7 @@
                 <span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
             </div>
             <div class="ui-list-info">
-                <h4 class="ui-nowrap">这是标题: {{item.title}}</h4>
+                <h4 class="ui-nowrap">{{item.title}}</h4>
             </div>
         </li>
     </ul>

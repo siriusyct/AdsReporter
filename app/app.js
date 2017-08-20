@@ -11,5 +11,5 @@ angular.module('adRep', [
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/ad_detail'});
+  $routeProvider.otherwise({redirectTo: '/view1'});
 }]);

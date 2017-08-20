@@ -1,6 +1,7 @@
 <header class="ui-header ui-header-positive ui-border-b">
-    <h1>详情</h1>
+    <i class="ui-icon-return" onclick="history.back()"></i><h1>详情</h1>
 </header>
 <section class="ui-container" ng-app="adRep" ng-controller="AdDetailController">
-    <iframe id="ifrPage" name="ifrPage" src="http://www.baidu.com"  scrolling="auto" onload="changeFrameHeight()" frameborder="0"></iframe>
+    <!--<iframe src="http://www.baidu.com"  frameborder="0" scrolling="no" id="external-frame" onload="setIframeHeight(this)"></iframe>-->
+    <iframe id="detailPage" ng-src="{{trustSrc}}" frameborder="0" scrolling="auto" height="510px" width="100%" ></iframe>
 </section>
