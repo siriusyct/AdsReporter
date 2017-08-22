@@ -1,9 +1,21 @@
 <header class="ui-header ui-header-positive ui-border-b">
     <h1>列表</h1><button class="ui-btn" ng-click="userLogout()">退出</button>
 </header>
+<footer class="ui-footer ui-footer-positive ui-border-t">
+    <ul class="ui-tiled ui-row-flex">
+        <li><div>&nbsp;</div><i>时间</i></li>
+        <li><div>&nbsp;</div><i>内容</i></li>
+        <li><div>&nbsp;</div><i>渠道</i></li>
+    </ul>
+</footer>
 <section class="ui-container" ng-app="adRep" ng-controller="AdsListController">
   <div class="ui-form ui-border-t">
-
+      <label>{{filterTypeLabel}}</label>
+      <div class="ui-select">
+          <select>
+              <option ng-repeat="item in filterTypeList" ng-click="filterClick($index)">{{item.label}}</option>
+          </select>
+      </div>
   </div>
     <ul class="ui-list ui-list-link ui-border-tb ui-list-active">
         <li class="ui-border-t" ng-repeat="item in adsRecords" ng-click="adsListClick($index)">
