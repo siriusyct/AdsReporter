@@ -8,27 +8,27 @@
     </ul>
 </footer>
 <section class="ui-container">
-  <div class="ui-form ui-border-t">
+    <div class="ui-form ui-border-t">
       <ul class="ui-row">
           <li class="ui-col ui-col-25">
               <div class="ui-flex ui-flex-pack-center"><label>{{filterTypeLabel}}</label></div>
           </li>
           <li class="ui-col ui-col-75">
               <div class="ui-select">
-                  <select ng-model="selectedFilterItems" ng-change="filterTypeChenged()">
-                      <option ng-repeat="item in filterTypeList">{{item.label}}</option>
-                  </select>
-              </div>
-          </li>
+        <select ng-model="selectedFilterItems" ng-change="filterTypeChenged()">
+        <option ng-repeat="item in filterTypeList">{{item.label}}</option>
+        </select>
+        </div>
+        </li>
       </ul>
-
-      <!--<label>{{filterTypeLabel}}</label>-->
+      <input id="demo1" type="text" readonly="" placeholder="日期选择" data-lcalendar="2016-05-11,2017-09-17" />
+        <!--<label>{{filterTypeLabel}}</label>-->
       <!--<div class="ui-select">-->
           <!--<select>-->
               <!--<option ng-repeat="item in filterTypeList" ng-click="filterClick($index)">{{item.label}}</option>-->
           <!--</select>-->
       <!--</div>-->
-  </div>
+    </div>
     <ul class="ui-list ui-list-link ui-border-tb ui-list-active">
         <li class="ui-border-t" ng-repeat="item in adsRecords track by $index" ng-click="adsListClick($index)">
             <div class="ui-list-thumb">

@@ -3,6 +3,7 @@
 var currentTabIndex = 0;
 var currentTypeFilterIndex = 0;
 
+// angular.module('adRep.view2', ['ngRoute','ui.calendar', 'ui.bootstrap'])
 angular.module('adRep.view2', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
@@ -12,9 +13,52 @@ angular.module('adRep.view2', ['ngRoute'])
   });
 }])
 
+//.controller('AdsListController', ['$scope', '$location', '$timeout', function($scope, $location, $timeout, $compile, uiCalendarConfig) {
 .controller('AdsListController', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
 
     setShowData();
+
+    var calendar = new LCalendar();
+    calendar.init({
+        'trigger': '#demo1', //标签id
+        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+        'minDate': '1900-1-1', //最小日期
+        'maxDate': new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+    });
+
+    // var date = new Date();
+    // var d = date.getDate();
+    // var m = date.getMonth();
+    // var y = date.getFullYear();
+    //
+    //
+    //
+    // /* event source that contains custom events on the scope */
+    // $scope.events = [
+    //     {title: 'All Day Event',start: new Date(y, m, 1)},
+    //     {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+    //     {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+    //     {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+    //     {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+    //     {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'},
+    //     {title:'zql',start:new Date(y,m,3)}
+    // ];
+    //
+    // /* config object */
+    // $scope.uiConfig = {
+    //     calendar:{
+    //         height: 450,
+    //         editable: false,
+    //         header:{
+    //             left: '',
+    //             center: 'title',
+    //             right: 'today prev,next'
+    //         }
+    //     }
+    // };
+    //
+    // /* event sources array*/
+    // $scope.eventSources = [$scope.events];
 
     // $scope.filterTypeLabel = fullTestData[0].typeName;
     // $scope.filterTypeList = fullTestData[0].listData;
@@ -95,4 +139,8 @@ angular.module('adRep.view2', ['ngRoute'])
           }
       }
   }
+
+
+
+
 }]);
