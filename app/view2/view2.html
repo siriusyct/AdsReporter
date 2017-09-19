@@ -1,4 +1,4 @@
-<div ng-app="adRep" ng-controller="AdsListController">
+<div ng-app="adRep">
 <header class="ui-header ui-header-positive ui-border-b">
     <h1>列表</h1><button class="ui-btn" ng-click="userLogout()">退出</button>
 </header>
@@ -8,20 +8,21 @@
     </ul>
 </footer>
 <section class="ui-container">
-    <div class="ui-form ui-border-t">
+    <div class="ui-form ui-border-t" ng-data-init>
       <ul class="ui-row">
           <li class="ui-col ui-col-25">
               <div class="ui-flex ui-flex-pack-center"><label>{{filterTypeLabel}}</label></div>
           </li>
           <li class="ui-col ui-col-75">
-              <div class="ui-select">
-        <select ng-model="selectedFilterItems" ng-change="filterTypeChenged()">
-        <option ng-repeat="item in filterTypeList">{{item.label}}</option>
-        </select>
+        <input id="demo1" type="text" readonly="" placeholder="日期选择" data-lcalendar="2016-05-11,2017-09-17" style="display: block;" />
+        <div id="selectDropDown" class="ui-select" style="display: none;">
+            <select ng-model="selectedFilterItems" ng-change="filterTypeChenged()">
+            <option ng-repeat="item in filterTypeList">{{item.label}}</option>
+            </select>
         </div>
         </li>
       </ul>
-      <input id="demo1" type="text" readonly="" placeholder="日期选择" data-lcalendar="2016-05-11,2017-09-17" />
+
         <!--<label>{{filterTypeLabel}}</label>-->
       <!--<div class="ui-select">-->
           <!--<select>-->

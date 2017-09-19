@@ -18,12 +18,49 @@ angular.module('adRep.view2', ['ngRoute'])
 
     setShowData();
 
+
+
+    var cYear = new Date().getFullYear();
+    var cMonth = new Date().getMonth() + 1;
+    var cDay = new Date().getDate();
+    var today = cYear + '-' + cMonth + '-' + cDay;
+
+    var scMonth = cMonth > 9 ? "" + cMonth : "0" + cMonth;
+    var scDay = cDay > 9 ? "" + cDay : "0" + cDay;
+    var showToday = cYear + '-' + scMonth + '-' + scDay;
+    console.log("today = " + showToday);
+
+    var gSelectDate = showToday;
+
+    $scope.$on('$viewContentLoaded', function() {
+        console.log("page onload");
+        setFilterSelectView();
+        //$("#demo1").value = today + "";
+    });
+
     var calendar = new LCalendar();
+    var onDateChanged = function () {
+        var sDate = document.getElementById("demo1").value;
+        console.log("select date = " + sDate);
+
+        if (gSelectDate == sDate)
+            return;
+
+        gSelectDate = sDate;
+        currentTypeFilterIndex++;
+        if (currentTypeFilterIndex > 2){
+            currentTypeFilterIndex = 0;
+        }
+        setShowData();
+    };
+
     calendar.init({
         'trigger': '#demo1', //标签id
         'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': '1900-1-1', //最小日期
-        'maxDate': new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+        'minDate': '2000-1-1', //最小日期
+        'maxDate': today, //最大日期
+        'defaultDate': showToday,
+        'onSelectDate': onDateChanged
     });
 
     // var date = new Date();
@@ -81,6 +118,7 @@ angular.module('adRep.view2', ['ngRoute'])
           console.log("data update ");
           currentTabIndex = index;
           currentTypeFilterIndex = 0;
+          setFilterSelectView();
           setShowData();
       }
   };
@@ -121,6 +159,20 @@ angular.module('adRep.view2', ['ngRoute'])
       $location.path('/view1');
   };
 
+  function setFilterSelectView(){
+      if (currentTabIndex == 0){
+          document.getElementById("demo1").style.display = "block";
+          document.getElementById("selectDropDown").style.display = "none";
+          // $("#demo1").style.display = "block";
+          // $("#selectDropDown").style.display = "none";
+      } else {
+          document.getElementById("demo1").style.display = "none";
+          document.getElementById("selectDropDown").style.display = "block";
+          // $("#demo1").style.display = "none";
+          // $("#selectDropDown").style.display = "block";
+      }
+  }
+
   function setShowData() {
       $scope.adsTypesData = fullTestData;
       if (currentTabIndex >= 0 && currentTabIndex <= 2){
@@ -139,8 +191,4 @@ angular.module('adRep.view2', ['ngRoute'])
           }
       }
   }
-
-
-
-
 }]);
