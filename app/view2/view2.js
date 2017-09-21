@@ -28,7 +28,7 @@ angular.module('adRep.view2', ['ngRoute'])
 
     var scMonth = cMonth > 9 ? "" + cMonth : "0" + cMonth;
     var scDay = cDay > 9 ? "" + cDay : "0" + cDay;
-    var showToday = "2017-09-10"//cYear + '-' + scMonth + '-' + scDay;
+    var showToday = "2017-09-10"; //cYear + '-' + scMonth + '-' + scDay; //
     console.log("today = " + showToday);
 
     var gSelectDate = showToday;
@@ -62,6 +62,7 @@ angular.module('adRep.view2', ['ngRoute'])
 
         console.log("reset show date");
         resetFilterItems();
+        setCurrentShowData();
         setShowData();
     };
 
@@ -111,8 +112,13 @@ angular.module('adRep.view2', ['ngRoute'])
     };
     
     function setCurrentShowData() {
+        cShowDataList.splice(0,cShowDataList.length);
         if (currentTabIndex == 0){
-            cShowDataList = dataList;
+            //cShowDataList = dataList;
+            for (var m = 0; m < dataList.length; m++){
+                var item = dataList[m];
+                cShowDataList.push(item);
+            }
         } else if (currentTabIndex == 1){
             cShowDataList = [];
             var filterItem = contentTypeList[currentTypeFilterIndex];
@@ -259,21 +265,25 @@ angular.module('adRep.view2', ['ngRoute'])
       $scope.adsTypesData = fullTestData;
       if (currentTabIndex >= 0 && currentTabIndex <= 2){
           $scope.filterTypeLabel = fullTestData[currentTabIndex].typeName;
-          
-          
+
+
           // $scope.filterTypeList = fullTestData[currentTabIndex].listData;
           // $scope.adsRecords = fullTestData[currentTabIndex].listData[currentTypeFilterIndex].data;
           // $scope.selectedFilterItems = fullTestData[currentTabIndex].listData[currentTypeFilterIndex].label;
 
           if (currentTabIndex == 1) {
               $scope.filterTypeList = contentTypeList;
-              $scope.selectedFilterItems = contentTypeList[0].label;
-          } else {
+              if (contentTypeList.length >= 1)
+                  $scope.selectedFilterItems = contentTypeList[0].label;
+          } else if (currentTabIndex == 2) {
               $scope.filterTypeList = channelTypeList;
-              $scope.selectedFilterItems = channelTypeList[0].label;
+              if (channelTypeList.length >= 1)
+                  $scope.selectedFilterItems = channelTypeList[0].label;
+          } else {
+              $scope.filterTypeList = [];
+              $scope.selectedFilterItems = " ";
           }
           $scope.adsRecords = cShowDataList;
-
 
           for(var m = 0; m < $scope.adsTypesData.length; m++){
               if (m == currentTabIndex){
@@ -283,6 +293,8 @@ angular.module('adRep.view2', ['ngRoute'])
               }
               console.log("isSel : " + m + " = " + $scope.adsTypesData[m].isSel);
           }
+
+          $scope.$applyAsync();
       }
   }
 }]);
