@@ -12,6 +12,36 @@ var adsReporterData = [
 ];
 var currentAd;
 
+var fullTestDataHW = [
+    {
+        "date":"2017-09-10",
+        "listData":[
+            {"theme":"主题1","platform":"baidu","icon":"baidu.png","title":"微信流量神话货车是否已经严重超载？","link":"https://baijia.baidu.com/s?id=1579104254650084080&wfr=pc&fr=idx_lst"},
+            {"theme":"主题2","platform":"baidu","icon":"baidu.png","title":"我们翻了今日头条、知乎、豆瓣的用户协议，发现了这些秘密","link":"https://baijia.baidu.com/s?id=1579067993889800026&wfr=pc&fr=idx_lst"},
+            {"theme":"主题1","platform":"baidu","icon":"baidu.png","title":"无人便利店系列深度采访：无法取代的夫妻店","link":"https://baijia.baidu.com/s?id=1579057227875661868&wfr=pc&fr=idx_lst"},
+            {"theme":"主题3","platform":"文汇","icon":"wenhui.png","title":"2名上海潜水员失踪 遗体已被打捞上岸","link":"http://www.whb.cn/zhuzhan/kandian/20170920/104154.html"},
+            {"theme":"主题1","platform":"baidu","icon":"baidu.png","title":"苹果三星新“机皇”遇冷，国产手机该高兴吗？","link":"https://baijia.baidu.com/s?id=1579028769187644302&wfr=pc&fr=idx_lst"},
+            {"theme":"主题1","platform":"baidu","icon":"baidu.png","title":"不论胜负，苹果稳赢！三大派别争夺东芝半导体，苹果介入坐享其成","link":"https://baijia.baidu.com/s?id=1578942195084406275&wfr=pc&fr=idx_lst"},
+            {"theme":"主题2","platform":"sina","icon":"sina.png","title":"一张44年前的1200元银行存单 现在能取出多少？","link":"http://news.sina.com.cn/s/qw/2017-09-21/doc-ifymeswc8845154.shtml"},
+            {"theme":"主题1","platform":"sina","icon":"sina.png","title":"新华社:斗气解决不了朝鲜半岛核问题","link":"http://news.sina.com.cn/w/zx/2017-09-21/doc-ifymeswc8986874.shtml"},
+            {"theme":"主题3","platform":"sina","icon":"sina.png","title":"歼20生产压力又增大：美军明年要买100架F35战机","link":"http://mil.news.sina.com.cn/jssd/2017-09-21/doc-ifymesii4623338.shtml"},
+            {"theme":"主题1","platform":"sina","icon":"sina.png","title":"人物|让AI都忌惮的业余球员!他真能晃断脚踝","link":"http://sports.sina.com.cn/basketball/nba/2017-09-20/doc-ifykywuc8155090.shtml"},
+            {"theme":"主题1","platform":"头条","icon":"toutiao.png","title":"考驾照新规10月1日起正式实施，很多人的朋友圈都炸开了锅","link":"http://www.toutiao.com/a6467887961940705805/"},
+            {"theme":"主题1","platform":"头条","icon":"toutiao.png","title":"不论胜负，苹果稳赢！三大派别争夺东芝半导体，苹果介入坐享其成","link":"http://www.toutiao.com/a6467820634180157966/"},
+            {"theme":"主题2","platform":"头条","icon":"toutiao.png","title":"“双一流”大学和“985”有啥区别 为何分成AB两类？","link":"http://www.toutiao.com/a6468087511544496654/"},
+            {"theme":"主题3","platform":"头条","icon":"toutiao.png","title":"今年北京人口有望20年来首次减少 专家称对高层次人才引力不减","link":"http://www.toutiao.com/i6468092313510871566/"},
+            {"theme":"主题1","platform":"头条","icon":"toutiao.png","title":"“双一流”大学名单公布 42所学校如何选出？","link":"http://www.toutiao.com/i6468084344467489293/"},
+            {"theme":"主题2","platform":"头条","icon":"toutiao.png","title":"全国铁路今迎大调图 京沪高铁“复兴号”正式提速","link":"http://www.toutiao.com/a6467882377247342862/"},
+            {"theme":"主题2","platform":"baidu","icon":"baidu.png","title":"苏有朋斥责周杰炒作：还心如清白？陈年旧事乱拼接！当网友傻么？","link":"https://baijia.baidu.com/s?id=1579140080176560633&wfr=pc&fr=ch_lst"},
+            {"theme":"主题3","platform":"baidu","icon":"baidu.png","title":"西班牙批片竟成周末上座冠军？我们攒了一张的购片地图","link":"https://baijia.baidu.com/s?id=1579137199043578992&wfr=pc&fr=ch_lst"},
+            {"theme":"主题2","platform":"baidu","icon":"baidu.png","title":"假如雁门关外乔峰不死？他的人生结局会如何，非死不可","link":"https://baijia.baidu.com/s?id=1578977486156105782&wfr=pc&fr=ch_lst"},
+            {"theme":"主题2","platform":"baidu","icon":"baidu.png","title":"一壹IP版权银行创立：IP版权银行就是IP的唯一归属","link":"https://baijia.baidu.com/s?id=1577854934664179543&wfr=pc&fr=ch_lst"},
+            {"theme":"主题1","platform":"baidu","icon":"baidu.png","title":"水木然：哪位高人想出的这个公式？太牛了！","link":"https://baijia.baidu.com/s?id=1577049326410134924&wfr=pc&fr=ch_lst"},
+            {"theme":"主题1","platform":"baidu","icon":"baidu.png","title":"什么是「急急如律令」｜真问真答","link":"https://baijia.baidu.com/s?id=1576621805933561752&wfr=pc&fr=ch_lst"}
+        ]
+    }
+];
+
 var fullTestData = [
     {
         "type":"time",

@@ -16,9 +16,10 @@ angular.module('adRep.view2', ['ngRoute'])
 //.controller('AdsListController', ['$scope', '$location', '$timeout', function($scope, $location, $timeout, $compile, uiCalendarConfig) {
 .controller('AdsListController', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
 
-    setShowData();
-
-
+    var contentTypeList = [];
+    var channelTypeList = [];
+    var dataList = [];
+    var cShowDataList = [];
 
     var cYear = new Date().getFullYear();
     var cMonth = new Date().getMonth() + 1;
@@ -27,10 +28,13 @@ angular.module('adRep.view2', ['ngRoute'])
 
     var scMonth = cMonth > 9 ? "" + cMonth : "0" + cMonth;
     var scDay = cDay > 9 ? "" + cDay : "0" + cDay;
-    var showToday = cYear + '-' + scMonth + '-' + scDay;
+    var showToday = "2017-09-10"//cYear + '-' + scMonth + '-' + scDay;
     console.log("today = " + showToday);
 
     var gSelectDate = showToday;
+    resetFilterItems();
+    setCurrentShowData();
+    setShowData();
 
     $scope.$on('$viewContentLoaded', function() {
         console.log("page onload");
@@ -40,18 +44,94 @@ angular.module('adRep.view2', ['ngRoute'])
 
     var calendar = new LCalendar();
     var onDateChanged = function () {
-        var sDate = document.getElementById("demo1").value;
+        var dateInput = document.getElementById("demo1");
+        var sDate = dateInput.value;
+        dateInput.blur();
         console.log("select date = " + sDate);
 
         if (gSelectDate == sDate)
             return;
 
         gSelectDate = sDate;
-        currentTypeFilterIndex++;
-        if (currentTypeFilterIndex > 2){
-            currentTypeFilterIndex = 0;
-        }
+        // currentTypeFilterIndex++;
+        // if (currentTypeFilterIndex > 2){
+        //     currentTypeFilterIndex = 0;
+        // }
+        currentTypeFilterIndex = 0;
+        currentTabIndex = 0;
+
+        console.log("reset show date");
+        resetFilterItems();
         setShowData();
+    };
+
+    function pushItemToArray(array, item){
+        if (array == null || item == null)
+            return;
+
+        var isSame = false;
+        for (var m = 0; m < array.length; m++){
+            var aItem = array[m];
+            if (aItem.label == item.label){
+                isSame = true;
+                break;
+            }
+        }
+
+        if (isSame == false)
+            array.push(item);
+    }
+
+    function resetFilterItems() {
+
+        var currentDateDatas = [];
+        for (var i = 0; i < fullTestDataHW.length; i++){
+            var item = fullTestDataHW[i];
+            if (item.date == gSelectDate){
+                currentDateDatas = item.listData;
+            }
+        }
+
+        contentTypeList = [];
+        channelTypeList = [];
+        dataList = [];
+
+        for (var j = 0; j < currentDateDatas.length; j++){
+            var dItem = currentDateDatas[j];
+            var ctItem = {"label": dItem.theme};
+            var chItem = {"label": dItem.platform};
+            pushItemToArray(contentTypeList, ctItem);
+            pushItemToArray(channelTypeList, chItem);
+            //contentTypeList.push(dItem.theme);
+            //channelTypeList.push(dItem.platform);
+        }
+        console.log("contentTypeList length = " + contentTypeList.length);
+        console.log("channelTypeList length = " + channelTypeList.length);
+        dataList = currentDateDatas;
+    };
+    
+    function setCurrentShowData() {
+        if (currentTabIndex == 0){
+            cShowDataList = dataList;
+        } else if (currentTabIndex == 1){
+            cShowDataList = [];
+            var filterItem = contentTypeList[currentTypeFilterIndex];
+            for (var m = 0; m < dataList.length; m++){
+                var item = dataList[m];
+                if (item.theme == filterItem.label){
+                    cShowDataList.push(item);
+                }
+            }
+        } else if (currentTabIndex == 2){
+            cShowDataList = [];
+            var filterItem = channelTypeList[currentTypeFilterIndex];
+            for (var m = 0; m < dataList.length; m++){
+                var item = dataList[m];
+                if (item.platform == filterItem.label){
+                    cShowDataList.push(item);
+                }
+            }
+        }
     };
 
     calendar.init({
@@ -119,6 +199,7 @@ angular.module('adRep.view2', ['ngRoute'])
           currentTabIndex = index;
           currentTypeFilterIndex = 0;
           setFilterSelectView();
+          setCurrentShowData();
           setShowData();
       }
   };
@@ -134,6 +215,7 @@ angular.module('adRep.view2', ['ngRoute'])
                 console.log(" filter index : " + currentTypeFilterIndex);
             }
         }
+        setCurrentShowData();
         setShowData();
     };
 
@@ -177,9 +259,21 @@ angular.module('adRep.view2', ['ngRoute'])
       $scope.adsTypesData = fullTestData;
       if (currentTabIndex >= 0 && currentTabIndex <= 2){
           $scope.filterTypeLabel = fullTestData[currentTabIndex].typeName;
-          $scope.filterTypeList = fullTestData[currentTabIndex].listData;
-          $scope.adsRecords = fullTestData[currentTabIndex].listData[currentTypeFilterIndex].data;
-          $scope.selectedFilterItems = fullTestData[currentTabIndex].listData[currentTypeFilterIndex].label;
+          
+          
+          // $scope.filterTypeList = fullTestData[currentTabIndex].listData;
+          // $scope.adsRecords = fullTestData[currentTabIndex].listData[currentTypeFilterIndex].data;
+          // $scope.selectedFilterItems = fullTestData[currentTabIndex].listData[currentTypeFilterIndex].label;
+
+          if (currentTabIndex == 1) {
+              $scope.filterTypeList = contentTypeList;
+              $scope.selectedFilterItems = contentTypeList[0].label;
+          } else {
+              $scope.filterTypeList = channelTypeList;
+              $scope.selectedFilterItems = channelTypeList[0].label;
+          }
+          $scope.adsRecords = cShowDataList;
+
 
           for(var m = 0; m < $scope.adsTypesData.length; m++){
               if (m == currentTabIndex){

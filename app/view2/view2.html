@@ -33,7 +33,7 @@
     <ul class="ui-list ui-list-link ui-border-tb ui-list-active">
         <li class="ui-border-t" ng-repeat="item in adsRecords track by $index" ng-click="adsListClick($index)">
             <div class="ui-list-thumb">
-                <span style="background-image:url(http://placeholder.qiniudn.com/100x100)"></span>
+                <span style="background-image:url(../img/{{item.icon}})"></span>
             </div>
             <div class="ui-list-info">
                 <h4 class="ui-nowrap">{{item.title}}</h4>
